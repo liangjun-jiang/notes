@@ -43,10 +43,30 @@ Shamelessly, let me use this table, [stolen from Meituan's technology blog](http
 |         | Storm           | Flink  |
 | ------------- |:-------------:| -----:|
 | Stateful      | No            | Yes   |
-| Window      |  weak support     |   good support |
+| Stream Window      |  weak support     |   good support |
 | Fault Tolerance   | Ack(http://storm.apache.org/releases/1.1.0/Guaranteeing-message-processing.html)      |    [Checkpoint](https://ci.apache.org/projects/flink/flink-docs-master/internals/stream_checkpointing.html#checkpointing) |
-|                  |                       |
 
 
-## the Journey of a Sample Data
+## a Sample Use Case
+Let's walk through some possible use cases of Flink stream processing. The example is originally written by Zhong Wu, published [here](https://mp.weixin.qq.com/s/U23xaOrxlg4h8hYPgMZrHg).
+
+Let's assume you are running a ride share company at New York City, you are interested in understanding the following metrics:
+0. We want to understand car counts of having 1 passenger, 2 passengers, 3 passengers, etc
+1. In 5 minutes, how many cars are entering individual area of the city? 
+2. In 10 minutes, how many passengers are riding? 
+For sure you can add your cases to fullfil your role. For example, you don't want to just look at cold numbers, you actually want to use a web application to visualize those metrics. 
+
+Will those metrics be helpful for you to run your business? For a ride sharing economy, without doubt, real time information is everything. 
+If you run an e-commerce website, will real-time information be matter that much? Alibaba company uses stream processing to adjust their search recommendations in special occasions such as Nov. 11 - the promotion day. The reason is that users will search the products having most discount in that day. The personalized recommendation will not work.
+
+So you have the basic `rides` data model, 
+| rideId | carId| isStart | lon| lat  | psgCount
+| ------ |:-----:| -----:|:-----:| -----:| -----:|
+| Long  | Long   | Yes   | Float | Float  | Integer |
+
+
+
+
+
+
 
